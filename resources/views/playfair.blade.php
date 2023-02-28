@@ -4,65 +4,69 @@
     <title>Playfair Encryption</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: 0 auto;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
         }
         h1 {
             text-align: center;
+            margin-top: 50px;
         }
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         label {
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
-        #text, #key {
             display: block;
             margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            font-weight: bold;
+        }
+        textarea, input[type="text"] {
+            display: block;
             width: 100%;
-            min-height: 100px;
-            resize: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
         }
-        input[type=number] {
-            width: 50px;
-            text-align: center;
-        }
-        input[type=submit] {
-            margin-top: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
+        input[type="submit"] {
+            display: inline-block;
+            padding: 10px 20px;
             border: none;
-            background-color: #3f51b5;
+            border-radius: 4px;
+            background-color: #4CAF50;
             color: #fff;
+            font-size: 16px;
             cursor: pointer;
+            margin-right: 10px;
         }
-        input[type=submit]:hover {
-            background-color: #1a237e;
+        input[type="submit"]:last-child {
+            margin-right: 0;
         }
-        .result {
+        p {
             margin-top: 20px;
-            text-align: center;
-        }
-        .result p {
-            margin-bottom: 5px;
+            font-size: 18px;
         }
         .copy-btn {
-            padding: 5px 10px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
             border-radius: 5px;
-            border: none;
-            background-color: #ccc;
-            color: #fff;
-            cursor: pointer;
         }
-        .copy-btn:hover {
-            background-color: #999;
+        .result {
+            text-align: center;
+        }
+        .copy-btn {
+            display: block;
+            margin: 10px auto 0;
         }
     </style>
     <script>
@@ -88,13 +92,12 @@
         <input type="submit" value="Encode">
         <input type="submit" name="decode" value="Decode">
     </form>
-
+    
     @if(isset($result))
-        <div class="result">
-            <p>{{ $decoded ? 'Decoded Text:' : 'Encoded Text:' }}</p>
-            <p>{{ $result }}</p>
-            <button class="copy-btn" onclick="copyToClipboard('{{ $result }}')">Copy to Clipboard</button>
-        </div>
+    <p class="result">{{ $decoded ? 'Decoded Text:' : 'Encoded Text:' }} {{ $result }}
+        <button class="copy-btn" onclick="copyToClipboard('{{ $result }}')">Copy to Clipboard</button>
+    </p>
     @endif
+    
 </body>
 </html>

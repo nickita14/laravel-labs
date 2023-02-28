@@ -26,43 +26,61 @@ class CaesarCipherController extends Controller
 
     public function encode($text, $key)
     {
-        $result = '';
+        // Initialize an empty string to store the result.
+        $result = ''; 
+        // Get the length of the input text.
+        $textLength = strlen($text); 
 
-        $textLength = strlen($text);
+        // Iterate over each character in the input text.
+        for ($i = 0; $i < $textLength; $i++) { 
+            // Get the current character.
+            $char = $text[$i]; 
 
-        for ($i = 0; $i < $textLength; $i++) {
-            $char = $text[$i];
-
-            if (ctype_alpha($char)) {
-                $ascii = ord(ctype_upper($char) ? 'A' : 'a');
-                $offset = ((ord($char) + $key) - $ascii) % 26;
-                $result .= chr($ascii + $offset);
-            } else {
-                $result .= $char;
+            // If the character is an alphabetic letter.
+            if (ctype_alpha($char)) { 
+                // Get the ASCII value of the first letter in the alphabet.
+                $ascii = ord(ctype_upper($char) ? 'A' : 'a'); 
+                // Calculate the offset for the current character using the encryption key.
+                $offset = ((ord($char) + $key) - $ascii) % 26; 
+                // Append the encoded character to the result string.
+                $result .= chr($ascii + $offset); 
+                // If the character is not an alphabetic letter.
+            } else { 
+                // Append the original character to the result string.
+                $result .= $char; 
             }
         }
 
-        return $result;
+        return $result; 
     }
 
     public function decode($text, $key)
     {
-        $result = '';
+        // Initialize an empty string to store the result.
+        $result = ''; 
 
-        $textLength = strlen($text);
+        // Get the length of the input text.
+        $textLength = strlen($text); 
 
-        for ($i = 0; $i < $textLength; $i++) {
-            $char = $text[$i];
-
-            if (ctype_alpha($char)) {
-                $ascii = ord(ctype_upper($char) ? 'A' : 'a');
-                $offset = ((ord($char) - $key) - $ascii + 26) % 26;
-                $result .= chr($ascii + $offset);
-            } else {
-                $result .= $char;
+        // Iterate over each character in the input text.
+        for ($i = 0; $i < $textLength; $i++) { 
+            // Get the current character.
+            $char = $text[$i]; 
+            // If the character is an alphabetic letter.
+            if (ctype_alpha($char)) { 
+                // Get the ASCII value of the first letter in the alphabet.
+                $ascii = ord(ctype_upper($char) ? 'A' : 'a'); 
+                // Calculate the offset for the current character using the encryption key.
+                $offset = ((ord($char) - $key) - $ascii + 26) % 26; 
+                // Append the decoded character to the result string.
+                $result .= chr($ascii + $offset); 
+                // If the character is not an alphabetic letter.
+            } else { 
+                // Append the original character to the result string.
+                $result .= $char; 
             }
         }
 
-        return $result;
+        return $result; 
     }
 }
