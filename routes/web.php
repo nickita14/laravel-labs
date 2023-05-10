@@ -27,3 +27,6 @@ Route::post('/salsa', 'App\Http\Controllers\SalsaController@salsa')->name('salsa
 
 Route::get('/sha256', function () { return view('sha256'); });
 Route::post('/sha256', 'App\Http\Controllers\SHA256Controller@sha256')->name('sha256');
+
+Route::get('/des', function () { return view('des'); });
+Route::post('/des', 'App\Http\Controllers\DESController@des')->name('des');
