@@ -24,3 +24,6 @@ Route::post('/playfair', 'App\Http\Controllers\PlayfairController@playfair')->na
 
 Route::get('/salsa', function () { return view('salsa'); });
 Route::post('/salsa', 'App\Http\Controllers\SalsaController@salsa')->name('salsa');
+
+Route::get('/sha256', function () { return view('sha256'); });
+Route::post('/sha256', 'App\Http\Controllers\SHA256Controller@sha256')->name('sha256');

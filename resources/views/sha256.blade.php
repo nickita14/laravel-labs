@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Salsa Encryption</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA-256 Hash</title>
     <style>
         body {
             font-family: sans-serif;
@@ -34,7 +35,7 @@
             border-radius: 4px;
             font-size: 16px;
         }
-        input[type="submit"] {
+        button[type="submit"] {
             display: inline-block;
             padding: 10px 20px;
             border: none;
@@ -45,12 +46,15 @@
             cursor: pointer;
             margin-right: 10px;
         }
-        input[type="submit"]:last-child {
+        button[type="submit"]:last-child {
             margin-right: 0;
         }
         p {
             margin-top: 20px;
             font-size: 18px;
+        }
+        .result {
+            text-align: center;
         }
         .copy-btn {
             background-color: #4CAF50;
@@ -58,18 +62,9 @@
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: block;
             font-size: 16px;
             border-radius: 5px;
-        }
-        .result {
-            text-align: center;
-        }
-        .nonce {
-            text-align: center;
-        }
-        .copy-btn {
-            display: block;
             margin: 10px auto 0;
         }
     </style>
@@ -86,29 +81,17 @@
     </script>
 </head>
 <body>
-    <h1>Salsa Encryption</h1>
-    <form method="post" action="{{ route('salsa') }}">
+    <h1>SHA-256 Hashing</h1>
+    <form method="post" action="{{ route('sha256') }}">
         @csrf
-        <label for="input">Enter Text:</label>
-        <textarea id="input" name="input"></textarea>
-        <label for="key">Enter Key:</label>
-        <input type="text" id="key" name="key" >
-        <label for="nonce">Enter Nonce (If you are going to decode):</label>
-        <input type="text" id="nonce" name="nonce">
-        <input type="submit" value="Encode">
-        <input type="submit" name="decode" value="Decode">
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Hash</button>
     </form>
-    
     @if(isset($result))
-    <p class="result">{{ $decoded ? 'Decoded Text:' : 'Encoded Text:' }} {{ $result }}
+    <p class="result">Hashed Text: <br> {{ $result }}
         <button class="copy-btn" onclick="copyToClipboard('{{ $result }}')">Copy to Clipboard</button>
     </p>
-        @if(!$decoded)
-            <p class="nonce">Nonce: {{ $nonce }}
-                <button class="copy-btn" onclick="copyToClipboard('{{ $nonce }}')">Copy to Clipboard</button>
-            </p>
-        @endif
     @endif
-    
 </body>
 </html>
